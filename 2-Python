@@ -1,0 +1,77 @@
+from math import * 
+  
+ 
+x1 = float(input("Enter x1:"))
+y1 = float(input("Enter y1:")) 
+x2 = float(input("Enter x2:"))
+y2 = float(input("Enter y2:")) 
+x3 = float(input("Enter x3:")) 
+y3 = float(input("Enter y3:")) 
+    
+x1x2 = x1 - x2  
+x1x3 = x1 - x3  
+  
+y1y2 = y1 - y2  
+y1y3 = y1 - y3  
+  
+y3y1 = y3 - y1  
+y2y1 = y2 - y1 
+  
+x3x1 = x3 - x1  
+x2x1 = x2 - x1  
+  
+    
+sx1x3 = pow(x1, 2) - pow(x3, 2)  
+  
+     
+sy1y3 = pow(y1, 2) - pow(y3, 2)  
+  
+sx2x1 = pow(x2, 2) - pow(x1, 2)  
+sy2y1 = pow(y2, 2) - pow(y1, 2)  
+  
+a = (((sx1x3) * (x1x2) + (sy1y3) * 
+          (x1x2) + (sx2x1) * (x1x3) + 
+          (sy2y1) * (x1x3)) // (2 * 
+          ((y3y1) * (x1x2) - (y2y1) * (x1x3)))) 
+              
+b = (((sx1x3) * (y1y2) + (sy1y3) * (y1y2) + 
+          (sx2x1) * (y1y3) + (sy2y1) * (y1y3)) // 
+          (2 * ((x3x1) * (y1y2) - (x2x1) * (y1y3))))  
+  
+c = (-pow(x1, 2) - pow(y1, 2) - 
+         2 * b * x1 - 2 * a * y1)  
+  
+h = -b;  
+k = -a;  
+R = h * h + k * k - c  
+  
+r = round(sqrt(R), 5)  
+  
+print("The center is (", h, ", ", k, ")")
+print("The radius is ", r)
+   
+      
+  
+import numpy as np
+
+sx1y1 = pow(x1,2) + pow(y1,2)
+sx2y2 = pow(x2,2) + pow(y2,2)
+sx3y3 = pow(x3,2) + pow(y3,2)
+
+Amatrix = np.array([(x1,y1,1),(x2,y2,1),(x3,y3,1)])
+
+Dmatrix = np.negative([(sx1y1,y1,1),(sx2y2,y2,1),(sx3y3,y3,1)])
+
+Ematrix = np.array([(sx1y1,x1,1),(sx2y2,x2,1),(sx3y3,x3,1),])
+
+Fmatrix = np.negative([(sx1y1,x1,y1),(sx2y2,x2,y2),(sx3y3,x3,y3)])
+
+D = np.linalg.det(Dmatrix)
+
+E = np.linalg.det(Ematrix)
+
+F = np.linalg.det(Fmatrix)
+
+print("The value for D is ", D)
+print("The value for E is ", E)
+print("The value for F is ", F)
